@@ -1,0 +1,102 @@
+package com.arjun.servlets;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.arjun.controllers.AuthController;
+import com.arjun.controllers.ReimbController;
+
+/**
+ * Servlet implementation class MainServlet
+ */
+public class MainServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    /**
+     * Default constructor. 
+     */
+
+	private AuthController authController = new AuthController();
+	
+	private ReimbController reimbController = new ReimbController();
+	
+	protected void mainServletController(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String URI = request.getRequestURI().substring(request.getContextPath().length(), 
+				request.getRequestURI().length());
+		System.out.println(URI);
+		if(URI.equals("/login") ) 
+			{
+				switch (request.getMethod()) {
+					case "GET":{
+						//response.setStatus(400);
+						//response.getWriter().write("Method Not Supported");
+						reimbController.getAllReimbursement(request, response);
+						break;
+					}
+					case "POST":{
+						try {
+							authController.userLogin(request, response);
+							//reimbController.addReimbursement(request, response);
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						break;
+					}
+					case "PUT":{
+						response.setStatus(400);
+						response.getWriter().write("Method Not Supported");
+						break;
+					}
+					case "DELETE":{
+						response.setStatus(400);
+						response.getWriter().write("Method Not Supported");
+						break;
+					}
+					default:{
+						response.setStatus(400);
+						response.getWriter().write("Method Not Supported");
+						break;
+					}
+				
+			}
+	
+				
+				
+			
+			}
+	}
+	
+	
+	
+	
+	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		mainServletController(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		
+		mainServletController(request, response);
+	}
+
+}
