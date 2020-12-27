@@ -15,27 +15,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class AuthController {
 	
 	
-	private ObjectMapper obj = new ObjectMapper();
-	
-	private UserServices userServices = new UserServices();
+
 	
 	
 	
 	public void userLogin(HttpServletRequest request, HttpServletResponse responce) throws IOException, SQLException {
 		
+		
+		ObjectMapper obj = new ObjectMapper();
+		 UserServices userServices = new UserServices();
+		
 		Users user = obj.readValue(request.getInputStream(), Users.class);
 		
-		//String username = request.getParameter("userName");
-		//String password = request.getParameter("userPassword");
 		
-		System.out.println(user.getUserName());
+		//System.out.println(user.getUserName());
 		
 		Users newUser = userServices.userLogin(user.getUserName(), user.getUserPassword());
 		//Users newUser = userServices.userLogin(username, password);
 		
 		//HttpSession sess = request.getSession();
 		
-		
+		System.out.println(newUser.getUser_ID());
 		
 		if(newUser.getUser_ID() == 0) {
 			responce.getWriter().write("User Can not found");

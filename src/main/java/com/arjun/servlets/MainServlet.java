@@ -27,6 +27,8 @@ public class MainServlet extends HttpServlet {
 	
 	protected void mainServletController(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+
 		String URI = request.getRequestURI().substring(request.getContextPath().length(), 
 				request.getRequestURI().length());
 		System.out.println(URI);
@@ -35,8 +37,8 @@ public class MainServlet extends HttpServlet {
 				switch (request.getMethod()) {
 					case "GET":{
 						//response.setStatus(400);
-						//response.getWriter().write("Method Not Supported");
-						reimbController.getAllReimbursement(request, response);
+						response.getWriter().write("Method Not Supported");
+						//		reimbController.getAllReimbursement(request, response);
 						break;
 					}
 					case "POST":{

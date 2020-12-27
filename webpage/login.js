@@ -1,16 +1,16 @@
 
 
-//window.localStorage.clear();
+window.localStorage.clear();
 let user;
 
 function change(){
-   user = JSON.parse (localStorage.getItem("json"))
-    document.getElementById("name").innerHTML= one.email;
+   //user = JSON.parse (localStorage.getItem("json"))
+   // document.getElementById("name").innerHTML= one.email;
 }
 
 function goTO(){
     window.location.href = "./home.html";
-    change();
+    //change();
 }
 
 
@@ -36,7 +36,7 @@ async function loginSubmit(e){
 
     try{
 
-         res = await fetch("http://localhost:8080/Project1/login", {
+         res = await fetch("http://localhost:8080/project1/login", {
             
             
             method: "POST",
@@ -50,10 +50,12 @@ async function loginSubmit(e){
 
           user = await res.json()
           
-          localStorage.setItem("json", JSON.stringify(user));
-         // goTO()
+          sessionStorage.setItem("json", JSON.stringify(user));
+
+          //localStorage.setItem("json", JSON.stringify(user));
+          goTO()
          console.log(user);
-      //  return user.data
+         return user.data
       
         
     }

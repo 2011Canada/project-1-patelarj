@@ -1,5 +1,6 @@
 
-     user = JSON.parse (localStorage.getItem("json"));
+    // user = JSON.parse (localStorage.getItem("json"));
+    user = JSON.parse(sessionStorage.getItem("json"))
      document.getElementById("name").innerHTML= user.firstName;
    
     
@@ -8,7 +9,7 @@ let length;
  async function getJokeAsync() {
     try {
         //just wait for the priomise to resolve
-        let response = await fetch("http://localhost:8080/Project1/home" ,
+        let response = await fetch("http://localhost:8080/project1/home" ,
 
         {
             method: "POST",
@@ -25,8 +26,8 @@ let length;
 
 
         data = await response.json()
-        localStorage.setItem("claims", JSON.stringify(data));
-        createTable(claim);
+        await sessionStorage.setItem("claims", JSON.stringify(data));
+        await createTable(claim);
          //length = data.length
         // createTable(data);
          
@@ -39,7 +40,7 @@ let length;
 }
 getJokeAsync();
 
-let  claim = JSON.parse(localStorage.getItem("claims"));
+let  claim = JSON.parse(sessionStorage.getItem("claims"));
 //createTable(claim);
  
     function createTable(data){
