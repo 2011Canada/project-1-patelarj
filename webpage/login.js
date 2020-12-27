@@ -1,10 +1,27 @@
 
 
-let res;
+//window.localStorage.clear();
+let user;
+
+function change(){
+   user = JSON.parse (localStorage.getItem("json"))
+    document.getElementById("name").innerHTML= one.email;
+}
+
+function goTO(){
+    window.location.href = "./home.html";
+    change();
+}
+
+
+
+
+
+
 
 async function loginSubmit(e){
     e.preventDefault();
-
+    
     let userName = document.getElementById("username-input").value
     let userPassword = document.getElementById("password-input").value
 
@@ -20,26 +37,48 @@ async function loginSubmit(e){
     try{
 
          res = await fetch("http://localhost:8080/Project1/login", {
-            method: "POST",
             
+            
+            method: "POST",
+
+
             body: JSON.stringify(credentials),
-            headers:{
+           headers:{
                 "Content-Type" : "application/json"
             }
         })
 
-         let user = await res.json()
+          user = await res.json()
+          
+          localStorage.setItem("json", JSON.stringify(user));
+         // goTO()
+         console.log(user);
+      //  return user.data
+      
+        
+    }
+    
     
        
-       console.log(user);
 
-    } catch(e){
+     catch(e){
         console.log(e)
     }
 
 
-    document.getElementById("usename").innerHTML= res.userName;
+   
 
 }
 
+
 document.getElementsByTagName("form")[0].addEventListener('submit', loginSubmit)
+
+async function goTO() {
+    window.location.href = "./home.html";
+    
+}
+
+
+
+ 
+ 

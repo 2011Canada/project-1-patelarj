@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.arjun.models.Reimbursements;
+import com.arjun.models.Users;
 import com.arjun.services.UserServices;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -44,21 +45,24 @@ public class ReimbController {
 	
 	public void getAllReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		HttpSession sess = request.getSession();
-		
-		int one = (int) sess.getAttribute("UserRoal");
-		
-		List<Reimbursements> reimbList = userService.getAllReimb(one);
+		//HttpSession sess = request.getSession();
+		Users user = obj.readValue(request.getInputStream(), Users.class);
+		//int one = (int) sess.getAttribute("UserRoal");
+		System.out.println(user.getFirstName());
+		List<Reimbursements> reimbList = userService.getAllReimb(user.getUser_ID());
 		
 		if(reimbList.isEmpty()) {
 			response.getWriter().write("you do not have any application ");
 		}
 		else {
 			
-			for(int i = 0; i<reimbList.size(); i++ ) {
-				
-				response.getWriter().write(obj.writeValueAsString(reimbList.get(i)));
-			}
+		//	for(int i = 0; i<reimbList.size(); i++ ) {
+			
+			
+			String one = obj.writeValueAsString(reimbList);
+				System.out.println(one);
+				response.getWriter().write(one);
+			//}
 			
 		}
 		

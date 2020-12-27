@@ -58,7 +58,7 @@ public class ReimbursementDAO {
 			
 			public List<Reimbursements> getMyReimbursement(int userid) {
 				
-				Reimbursements reimbursement = new Reimbursements();
+				
 				List<Reimbursements> reimbList = new ArrayList<Reimbursements>();
 				
 				String sql = "select * from ers_reimbursement where reimb_author = ?  ";
@@ -70,6 +70,7 @@ public class ReimbursementDAO {
 					
 					ResultSet res = pst.executeQuery();
 					while(res.next()) {
+						Reimbursements reimbursement = new Reimbursements();
 						reimbursement.setReimb_ID(res.getInt(1));
 						reimbursement.setReimbAmount(res.getDouble(2));
 						reimbursement.setReimbSubmitted(res.getDate(3));

@@ -25,21 +25,30 @@ public class AuthController {
 		
 		Users user = obj.readValue(request.getInputStream(), Users.class);
 		
+		//String username = request.getParameter("userName");
+		//String password = request.getParameter("userPassword");
 		
+		System.out.println(user.getUserName());
 		
 		Users newUser = userServices.userLogin(user.getUserName(), user.getUserPassword());
+		//Users newUser = userServices.userLogin(username, password);
 		
-		HttpSession sess = request.getSession();
+		//HttpSession sess = request.getSession();
 		
 		
 		
 		if(newUser.getUser_ID() == 0) {
 			responce.getWriter().write("User Can not found");
+			
+			//responce.sendRedirect("/home.html");
 		}
 		else {
 			
-			sess.setAttribute("UserRoal", newUser.getRoleID());
+			//sess.setAttribute("UserRoal", newUser.getRoleID());
+			//sess.setAttribute("name", newUser.getFirstName());
 			responce.getWriter().write(obj.writeValueAsString(newUser));
+			//responce.addCookie(cookie);
+			//responce.sendRedirect("./webpage/home.html");
 		}
 		
 		

@@ -75,6 +75,53 @@ public class MainServlet extends HttpServlet {
 				
 			
 			}
+		else if(URI.equals("/home") ) 
+		{
+			switch (request.getMethod()) {
+				case "GET":{
+					//response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					//reimbController.getAllReimbursement(request, response);
+					break;
+				}
+				case "POST":{
+					try {
+						//authController.userLogin(request, response);
+						//reimbController.addReimbursement(request, response);
+						System.out.println("reached to the post");
+						reimbController.getAllReimbursement(request, response);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				}
+				case "PUT":{
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					break;
+				}
+				case "DELETE":{
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					break;
+				}
+				default:{
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					break;
+				}
+			
+		}
+
+			
+			
+		
+		}
+		
+		
+		
+		
 	}
 	
 	
