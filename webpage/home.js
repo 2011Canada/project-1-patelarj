@@ -1,18 +1,21 @@
 
-    // user = JSON.parse (localStorage.getItem("json"));
+    // get the data form the session storage 
     user = JSON.parse(sessionStorage.getItem("json"))
      document.getElementById("name").innerHTML= user.firstName;
-   
+     
+     
+     // hide the form form the user at first 
+     document.getElementById("form").style.display = "none";
     
 let data
 let length;
- async function getJokeAsync() {
+ async function getReimbursement() {
     try {
         //just wait for the priomise to resolve
         let response = await fetch("http://localhost:8080/project1/home" ,
 
         {
-            method: "POST",
+           method: "POST",
             body: JSON.stringify(user),
             headers:{
                 "Content-Type" : "application/json"
@@ -38,7 +41,7 @@ let length;
         console.log("ops somthoing went wrong")
     }
 }
-getJokeAsync();
+getReimbursement();
 
 let  claim = JSON.parse(sessionStorage.getItem("claims"));
 //createTable(claim);
@@ -77,12 +80,43 @@ for(let j = 0; j<data.length; j++){
    total++
    document.getElementById(total).innerHTML=data[j].reimbDescription;
    total++
-   document.getElementById(total).innerHTML=data[j].reimbStatusID;
+    if(data[j].reimbStatusID ===1){
+        document.getElementById(total).innerHTML="Panding";
+        document.getElementById(total).style.color ="#DDDA47"
+    }
+    else if(data[j].reimbStatusID ===2){
+        document.getElementById(total).innerHTML="Approved";
+        document.getElementById(total).style.color ="#59A118"
+    }
+    else if(data[j].reimbStatusID ===3){
+        document.getElementById(total).innerHTML="Denied";
+        document.getElementById(total).style.color ="#C2411B"
+    }
+    else{
+        document.getElementById(total).innerHTML="NA";
+    }
    total++
+
+
    document.getElementById(total).innerHTML=data[j].reimbResolverID;
    total++
-   document.getElementById(total).innerHTML=data[j].reimbTypeID; 
-total++;
+
+   
+   if(data[j].reimbTypeID ===1){
+    document.getElementById(total).innerHTML="Lodging";
+    }
+    else if(data[j].reimbTypeID ===2){
+    document.getElementById(total).innerHTML="Travel";
+    }
+    else if(data[j].reimbTypeID ===3){
+    document.getElementById(total).innerHTML="Food";
+    }
+    else
+    {
+    document.getElementById(total).innerHTML="Other";
+    }
+
+    total++;
 }
 
 
@@ -90,5 +124,89 @@ total++;
 
 
 
-//document.getElementById("button").addEventListener("click", createTable(claim));
+document.getElementById("button").addEventListener("click", refreshPage);
+
+document.getElementById("show").addEventListener("click", showForm)
+
+document.getElementById("sub").addEventListener("click",addReimb )
+
+document.getElementById("logout").addEventListener("click", logOut )
+
+
+function showForm(){
+
+    document.getElementById("form").style.display = "block";
+
+}
+
+function logOut() {
+
+    window.location.href = "./login.html";
+
+}
+
+function refreshPage(){
+    window.location.reload();
+} 
+
+
+
+// this function taks in the input data from the form and add's the Reambursment 
+
+async function addReimb(e){
+    e.preventDefault();
+     let reimbAmount = document.getElementById("amount").value
+     let reimbDescription = document.getElementById("description").value
+     let reimbTypeID
+     let  ele = document.getElementsByName('gridRadios')
+     for(let i = 0; i< ele.length; i++){
+            if(ele[i].checked)
+            reimbTypeID = ele[i].value;
+     }   
+
+     let reimbAuthorID = user.user_ID
+     let reimbStatusID =1;
+     let reimbResolverID =2;
+    const reimbursement = {
+
+        reimbAmount,
+        reimbAuthorID,
+        reimbDescription,
+        reimbStatusID,
+        reimbTypeID,
+        reimbResolverID
+    
+    
+    }
+
+    console.log(reimbursement)
+
+    try{
+
+        res = await fetch("http://localhost:8080/project1/add", {
+           
+           
+           method: "POST",
+
+           
+           body: JSON.stringify(reimbursement),
+          headers:{
+               "Content-Type" : "application/json"
+           }
+       })
+
+         responce = await res.json();
+         
+         //refreshPage();
+        console.log(responce);
+          
+       
+   }
+    catch(e){
+       console.log(e)
+   }
+   refreshPage();
+}
+
  
+

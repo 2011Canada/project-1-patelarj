@@ -36,7 +36,8 @@ public class MainServlet extends HttpServlet {
 			{
 				switch (request.getMethod()) {
 					case "GET":{
-						//response.setStatus(400);
+						//reimbController.getAllReimbursement(request, response);
+						response.setStatus(400);
 						response.getWriter().write("Method Not Supported");
 						//		reimbController.getAllReimbursement(request, response);
 						break;
@@ -82,7 +83,8 @@ public class MainServlet extends HttpServlet {
 			switch (request.getMethod()) {
 				case "GET":{
 					//response.setStatus(400);
-					response.getWriter().write("Method Not Supported");
+					//response.getWriter().write("Method Not Supported");
+					
 					//reimbController.getAllReimbursement(request, response);
 					break;
 				}
@@ -120,7 +122,56 @@ public class MainServlet extends HttpServlet {
 			
 		
 		}
+		else if(URI.equals("/add") ) 
+		{
+			switch (request.getMethod()) {
+				case "GET":{
+					//response.setStatus(400);
+					//response.getWriter().write("Method Not Supported");
+					
+					//reimbController.getAllReimbursement(request, response);
+					break;
+				}
+				case "POST":{
+					try {
+						//authController.userLogin(request, response);
+						//reimbController.addReimbursement(request, response);
+						System.out.println("reached to the post");
+						
+						try {
+							reimbController.addReimbursement(request, response);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					break;
+				}
+				case "PUT":{
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					break;
+				}
+				case "DELETE":{
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					break;
+				}
+				default:{
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					break;
+				}
+			
+		}
+
+			
+			
 		
+		}
 		
 		
 		

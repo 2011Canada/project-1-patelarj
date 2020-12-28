@@ -47,8 +47,8 @@ public class ReimbController {
 		
 		//HttpSession sess = request.getSession();
 		Users user = obj.readValue(request.getInputStream(), Users.class);
-		//int one = (int) sess.getAttribute("UserRoal");
-		System.out.println(user.getFirstName());
+		//int one = (int) sess.getAttribute("userID");
+		System.out.println(user.getUser_ID());
 		List<Reimbursements> reimbList = userService.getAllReimb(user.getUser_ID());
 		
 		if(reimbList.isEmpty()) {
@@ -59,9 +59,9 @@ public class ReimbController {
 		//	for(int i = 0; i<reimbList.size(); i++ ) {
 			
 			
-			String one = obj.writeValueAsString(reimbList);
-				System.out.println(one);
-				response.getWriter().write(one);
+			String reimblist = obj.writeValueAsString(reimbList);
+				System.out.println(reimblist);
+				response.getWriter().write(reimblist);
 			//}
 			
 		}

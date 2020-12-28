@@ -8,8 +8,8 @@ public class Reimbursements {
 
 	private int reimb_ID;
 	private double reimbAmount;
-	private Date reimbSubmitted;
-	private Date reimbResolved;
+	private String reimbSubmitted;
+	private String reimbResolved;
 	private String reimbDescription;
 	private int reimbAuthorID;
 	private int reimbResolverID;
@@ -23,7 +23,7 @@ public class Reimbursements {
 	}
 
 
-	public Reimbursements(int reimb_ID, double reimbAmount, Date reimbSubmitted, Date reimbResolved,
+	public Reimbursements(int reimb_ID, double reimbAmount, String reimbSubmitted, String reimbResolved,
 			String reimbDescription, int reimbAuthorID, int reimbResolverID, int reimbStatusID, int reimbTypeID) {
 		super();
 		this.reimb_ID = reimb_ID;
@@ -58,23 +58,23 @@ public class Reimbursements {
 	}
 
 
-	public Date getReimbSubmitted() {
+	public String getReimbSubmitted() {
 		return reimbSubmitted;
 	}
 
 
-	public void setReimbSubmitted(Date date) {
-		this.reimbSubmitted = date;
+	public void setReimbSubmitted(String string) {
+		this.reimbSubmitted = string;
 	}
 
 
-	public Date getReimbResolved() {
+	public String getReimbResolved() {
 		return reimbResolved;
 	}
 
 
-	public void setReimbResolved(Date reimbResolved) {
-		this.reimbResolved = reimbResolved;
+	public void setReimbResolved(String string) {
+		this.reimbResolved = string;
 	}
 
 

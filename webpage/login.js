@@ -1,6 +1,7 @@
 
 
 window.localStorage.clear();
+sessionStorage.clear()
 let user;
 
 function change(){
@@ -41,7 +42,7 @@ async function loginSubmit(e){
             
             method: "POST",
 
-
+            
             body: JSON.stringify(credentials),
            headers:{
                 "Content-Type" : "application/json"
@@ -51,8 +52,9 @@ async function loginSubmit(e){
           user = await res.json()
           
           sessionStorage.setItem("json", JSON.stringify(user));
-
-          //localStorage.setItem("json", JSON.stringify(user));
+          
+            
+         
           goTO()
          console.log(user);
          return user.data

@@ -73,8 +73,8 @@ public class ReimbursementDAO {
 						Reimbursements reimbursement = new Reimbursements();
 						reimbursement.setReimb_ID(res.getInt(1));
 						reimbursement.setReimbAmount(res.getDouble(2));
-						reimbursement.setReimbSubmitted(res.getDate(3));
-						reimbursement.setReimbResolved(res.getDate(4));
+						reimbursement.setReimbSubmitted(res.getString(3));
+						reimbursement.setReimbResolved(res.getString(4));
 						reimbursement.setReimbDescription(res.getString(5));
 						reimbursement.setReimbAuthorID(res.getInt(7));
 						reimbursement.setReimbResolverID(res.getInt(8));

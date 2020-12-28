@@ -2,8 +2,10 @@ package com.arjun.controllers;
 
 
 import java.io.IOException;
+import java.net.CookieHandler;
 import java.sql.SQLException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,8 +35,9 @@ public class AuthController {
 		Users newUser = userServices.userLogin(user.getUserName(), user.getUserPassword());
 		//Users newUser = userServices.userLogin(username, password);
 		
-		//HttpSession sess = request.getSession();
+		HttpSession sess = request.getSession();
 		
+		sess.setAttribute("userID", newUser.getUser_ID());
 		System.out.println(newUser.getUser_ID());
 		
 		if(newUser.getUser_ID() == 0) {
@@ -44,10 +47,10 @@ public class AuthController {
 		}
 		else {
 			
-			//sess.setAttribute("UserRoal", newUser.getRoleID());
-			//sess.setAttribute("name", newUser.getFirstName());
+			String userid = String.valueOf(newUser.getUser_ID());
+			Cookie one = new Cookie("userID", userid );
 			responce.getWriter().write(obj.writeValueAsString(newUser));
-			//responce.addCookie(cookie);
+			responce.addCookie(one);
 			//responce.sendRedirect("./webpage/home.html");
 		}
 		
