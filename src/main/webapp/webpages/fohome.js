@@ -52,7 +52,7 @@ let  claim = JSON.parse(sessionStorage.getItem("claims"));
             let creatTr = document.createElement("tr");
             let creatTh = document.createElement("th");
             creatTh.scope = "row";
-            creatTh.innerHTML= data[j].reimb_ID;
+            creatTh.innerHTML= j;
             let tBody = document.getElementById("tbody")
             tBody.appendChild(creatTr);
             creatTr.appendChild(creatTh);
@@ -195,7 +195,7 @@ async function addReimb(e){
            }
        })
 
-        // responce = await res.json();
+         responce = await res.json();
          
          //refreshPage();
         console.log(responce);

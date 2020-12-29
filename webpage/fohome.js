@@ -50,6 +50,8 @@ let  claim = JSON.parse(sessionStorage.getItem("claims"));
         let total =0 ;
         for(let j = 0; j<data.length; j++){
             let creatTr = document.createElement("tr");
+            creatTr.className = data[j].reimb_ID;
+            creatTr.addEventListener("click" , showme )
             let creatTh = document.createElement("th");
             creatTh.scope = "row";
             creatTh.innerHTML= data[j].reimb_ID;
@@ -65,6 +67,9 @@ let  claim = JSON.parse(sessionStorage.getItem("claims"));
     fillData(data);
     }
 
+    function showme(){
+        console.log(this.className)
+    }
 
 
 function fillData(data){
@@ -98,7 +103,7 @@ for(let j = 0; j<data.length; j++){
    total++
 
 
-   document.getElementById(total).innerHTML=data[j].reimbResolverID;
+   document.getElementById(total).innerHTML=data[j].reimbAuthorID;
    total++
 
    
@@ -195,7 +200,7 @@ async function addReimb(e){
            }
        })
 
-        // responce = await res.json();
+         responce = await res.json();
          
          //refreshPage();
         console.log(responce);

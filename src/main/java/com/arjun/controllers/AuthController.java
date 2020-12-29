@@ -35,9 +35,10 @@ public class AuthController {
 		Users newUser = userServices.userLogin(user.getUserName(), user.getUserPassword());
 		//Users newUser = userServices.userLogin(username, password);
 		
-		HttpSession sess = request.getSession();
+		//HttpSession sess = request.getSession();
 		
-		sess.setAttribute("userID", newUser.getUser_ID());
+		//sess.setAttribute("userID", newUser.getUser_ID());
+		//sess.setAttribute("roalID", newUser.getRoleID());
 		System.out.println(newUser.getUser_ID());
 		
 		if(newUser.getUser_ID() == 0) {
@@ -47,11 +48,11 @@ public class AuthController {
 		}
 		else {
 			
-			String userid = String.valueOf(newUser.getUser_ID());
-			Cookie one = new Cookie("userID", userid );
+			//String userid = String.valueOf(newUser.getUser_ID());
+			//Cookie one = new Cookie("userID", userid );
 			responce.getWriter().write(obj.writeValueAsString(newUser));
-			responce.addCookie(one);
-			//responce.sendRedirect("./webpage/home.html");
+			//responce.addCookie(one);
+			//responce.sendRedirect("./home.html");
 		}
 		
 		

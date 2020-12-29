@@ -60,13 +60,25 @@ public class ReimbursementDAO {
 				
 				
 				List<Reimbursements> reimbList = new ArrayList<Reimbursements>();
-				
-				String sql = "select * from ers_reimbursement where reimb_author = ?  ";
-				
 				try {
-					pst = conn.prepareStatement(sql);
+				String sql ="";
+				if(userid != 0) {
+				
+				 sql = "select * from ers_reimbursement where reimb_author = ?  ";
+				 pst = conn.prepareStatement(sql);
 					
 					pst.setInt(1, userid);
+				
+				}
+				
+				else {
+					
+					sql = "select * from ers_reimbursement";
+					
+					pst = conn.prepareStatement(sql);
+				}
+				
+					
 					
 					ResultSet res = pst.executeQuery();
 					while(res.next()) {
@@ -92,6 +104,38 @@ public class ReimbursementDAO {
 				
 				return reimbList;
 						
+				
+			}
+			
+			
+			
+			
+			public Boolean updateReimbursement(Reimbursements reimbursement) {
+				Boolean isDone = false;
+				
+				String sql = "update ers_reimbursement set reimb_status_id = ? where reimb_id = ?  ";
+				
+				
+				try {
+					pst = conn.prepareStatement(sql);
+					
+					pst.setInt(1, reimbursement.getReimbStatusID());
+					pst.setInt(2, reimbursement.getReimb_ID());
+					
+					
+					int result = pst.executeUpdate();
+					
+					if(result != 0) {
+						isDone = true;
+					}
+					
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return isDone;
 				
 			}
 			

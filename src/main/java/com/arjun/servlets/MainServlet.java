@@ -40,9 +40,13 @@ public class MainServlet extends HttpServlet {
 						response.setStatus(400);
 						response.getWriter().write("Method Not Supported");
 						//		reimbController.getAllReimbursement(request, response);
+						//System.out.println("reached to get");
+						//reimbController.getAllReimbursement(request, response);
 						break;
 					}
 					case "POST":{
+						
+						System.out.println("reached to post");
 						try {
 							authController.userLogin(request, response);
 							//reimbController.addReimbursement(request, response);
@@ -57,8 +61,18 @@ public class MainServlet extends HttpServlet {
 						break;
 					}
 					case "PUT":{
-						response.setStatus(400);
-						response.getWriter().write("Method Not Supported");
+						//response.setStatus(400);
+						//response.getWriter().write("Method Not Supported");
+						System.out.println("put ");
+						try {
+							reimbController.addReimbursement(request, response);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						break;
 					}
 					case "DELETE":{
@@ -101,8 +115,17 @@ public class MainServlet extends HttpServlet {
 					break;
 				}
 				case "PUT":{
-					response.setStatus(400);
-					response.getWriter().write("Method Not Supported");
+					//response.setStatus(400);
+					//response.getWriter().write("Method Not Supported");
+					try {
+						reimbController.addReimbursement(request, response);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					break;
 				}
 				case "DELETE":{
@@ -187,6 +210,8 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		mainServletController(request, response);
+		
+		
 	}
 
 	/**

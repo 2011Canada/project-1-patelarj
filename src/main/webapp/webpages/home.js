@@ -1,6 +1,8 @@
-
+/**
+ * 
+ */
     // get the data form the session storage 
-    user = JSON.parse(sessionStorage.getItem("json"))
+   	 user = JSON.parse(sessionStorage.getItem("json"))
      document.getElementById("name").innerHTML= user.firstName;
      
      
@@ -12,11 +14,11 @@ let length;
  async function getReimbursement() {
     try {
         //just wait for the priomise to resolve
-        let response = await fetch("http://localhost:8080/project1/home" ,
+        let response = await fetch("http://localhost:8080/project1/login" ,
 
         {
-           method: "POST",
-            body: JSON.stringify(user),
+           // method: "GET",
+           // body: JSON.stringify(user),
             headers:{
                 "Content-Type" : "application/json"
             }
@@ -167,6 +169,7 @@ async function addReimb(e){
      let reimbAuthorID = user.user_ID
      let reimbStatusID =1;
      let reimbResolverID =2;
+
     const reimbursement = {
 
         reimbAmount,
@@ -195,17 +198,17 @@ async function addReimb(e){
            }
        })
 
-        // responce = await res.json();
+     //    responce = await res.json();
          
          //refreshPage();
-        console.log(responce);
+      //  console.log(responce);
           
        
    }
     catch(e){
        console.log(e)
    }
-   refreshPage();
+  // refreshPage();
 }
 
  

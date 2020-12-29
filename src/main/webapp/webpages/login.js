@@ -57,9 +57,8 @@ async function loginSubmit(e){
           sessionStorage.setItem("json", JSON.stringify(user));
           
             
-        if(user !== null){ 
-        goTO()
-        }
+         
+          goTO()
          console.log(user);
          return user.data
       
@@ -84,4 +83,6 @@ document.getElementsByTagName("form")[0].addEventListener('submit', loginSubmit)
 
 
  
- 
+ /**
+ * 
+ */

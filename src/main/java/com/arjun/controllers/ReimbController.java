@@ -47,8 +47,14 @@ public class ReimbController {
 		
 		//HttpSession sess = request.getSession();
 		Users user = obj.readValue(request.getInputStream(), Users.class);
-		//int one = (int) sess.getAttribute("userID");
-		System.out.println(user.getUser_ID());
+		//int userid = (int) sess.getAttribute("userID");
+		//int userroal = (int) sess.getAttribute("roalID");
+		//System.out.println(one);
+		
+		
+		//if(userroal==1) {
+		if(user.getRoleID()== 1) {
+		
 		List<Reimbursements> reimbList = userService.getAllReimb(user.getUser_ID());
 		
 		if(reimbList.isEmpty()) {
@@ -56,21 +62,49 @@ public class ReimbController {
 		}
 		else {
 			
-		//	for(int i = 0; i<reimbList.size(); i++ ) {
+		
 			
 			
 			String reimblist = obj.writeValueAsString(reimbList);
 				System.out.println(reimblist);
 				response.getWriter().write(reimblist);
-			//}
+			
+			
+		}
+		}
+		else {
+			
+			
+			List<Reimbursements> reimbList = userService.getAllReimb(0);
+			
+			if(reimbList.isEmpty()) {
+				response.getWriter().write("you do not have any application ");
+			}
+			else {
+				
+			
+				
+				
+				String reimblist = obj.writeValueAsString(reimbList);
+					System.out.println(reimblist);
+					response.getWriter().write(reimblist);
+				
+				
+			}
+			
 			
 		}
 		
 		
 		
 		
+	}
+	
+	
+	public void updateReimb(HttpServletRequest request, HttpServletResponse response) {
 		
 	}
+	
 	
 	
 }
