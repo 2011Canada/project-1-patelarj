@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.arjun.models.Reimbursements;
 import com.arjun.models.Users;
+import com.arjun.services.FinanceOfficerServices;
 import com.arjun.services.UserServices;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -101,7 +102,18 @@ public class ReimbController {
 	}
 	
 	
-	public void updateReimb(HttpServletRequest request, HttpServletResponse response) {
+	public void updateReimb(HttpServletRequest request, HttpServletResponse response) throws JsonParseException, JsonMappingException, IOException {
+		
+		Reimbursements reimbursements = obj.readValue(request.getInputStream(), Reimbursements.class);
+		
+		System.out.println(reimbursements.getReimb_ID());
+		
+		FinanceOfficerServices financeOfficerServices = new FinanceOfficerServices();
+		if(financeOfficerServices.updateReimbursement(reimbursements)) {
+			response.getWriter().write("Status has been chaged");
+			System.out.println("upeated");
+		}
+		
 		
 	}
 	

@@ -19,7 +19,8 @@
       <button id="logout" type="button" class="btn btn-outline-danger">Logout</button>
       
     </div>
-    <table class="table table-striped shadow p-3 mb-5 bg-white rounded table-hover" style="width: 85%; margin: auto;">
+    <div class="overflow-auto shadow p-3 mb-5 bg-white rounded" style="width: 85%; margin: auto;">
+    <table class="table table-striped  table-hover " >
       <thead>
         <tr>
             
@@ -37,7 +38,7 @@
       <tbody id="tbody" >
         </tbody>
     </table>
-  
+    </div>
 
     <div id="form" class="shadow p-3 mb-5 bg-white rounded " style="width: 85%; margin: auto;">
     <form>
@@ -84,13 +85,30 @@
           
         </div>
       </fieldset>
-      
       <div class="form-group row">
         <div class="col-sm-10">
           <button type="submit" id="sub" class="btn btn-primary">Submit</button>
         </div>
       </div>
     </form>
+  </div>
+  <div id="details" class="card shadow p-3 mb-5 bg-white rounded " style="width: 85%; margin: auto;">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" id="reimbID"></li>
+        <li class="list-group-item" id="amo"></li>
+        <li class="list-group-item" id="submited"></li>
+        <li class="list-group-item" id="descri"></li>
+        <li class="list-group-item" id="status"></li>
+        <li class="list-group-item" id="submitedby"></li>
+        <li class="list-group-item" id="reimtype"></li>
+      </ul>
+     
+      <button id="approve" type="button" class="btn btn-outline-success">Approved</button>
+      <button id="denied" type="button" class="btn btn-outline-danger">Denied</button>
+    </div>
+
   </div>
 
 

@@ -4,9 +4,13 @@
      document.getElementById("name").innerHTML= user.firstName;
      
      
+     
      // hide the form form the user at first 
      document.getElementById("form").style.display = "none";
-    
+     document.getElementById("details").style.display="none";
+
+
+
 let data
 let length;
  async function getReimbursement() {
@@ -29,8 +33,8 @@ let length;
 
 
         data = await response.json()
-        await sessionStorage.setItem("claims", JSON.stringify(data));
-        await createTable(claim);
+         sessionStorage.setItem("claims", JSON.stringify(data));
+         createTable(claim);
          //length = data.length
         // createTable(data);
          
@@ -51,6 +55,9 @@ let  claim = JSON.parse(sessionStorage.getItem("claims"));
         for(let j = 0; j<data.length; j++){
             let creatTr = document.createElement("tr");
             creatTr.className = data[j].reimb_ID;
+            
+            creatTr.setAttribute("data-toggle", "modal")
+            creatTr.setAttribute("data-target", "#staticBackdrop")
             creatTr.addEventListener("click" , showme )
             let creatTh = document.createElement("th");
             creatTh.scope = "row";
@@ -67,11 +74,58 @@ let  claim = JSON.parse(sessionStorage.getItem("claims"));
     fillData(data);
     }
 
+
+
+//--------------------------- Reimbursements details of individual claims--------------
+
     function showme(){
+
+        document.getElementById("details").style.display="block";
         console.log(this.className)
+        let list = document.getElementsByClassName(this.className)[0];
+        document.getElementById("reimbID").innerHTML=this.className;
+
+        let amount = list.getElementsByTagName("td")[0].innerHTML;
+        document.getElementById("amo").innerHTML ="Amount --> " + amount;
+        console.log(amount)
+
+
+        let submitedDate = list.getElementsByTagName("td")[1].innerHTML;
+        document.getElementById("submited").innerHTML="Submited On --> "+submitedDate;
+
+        let description = list.getElementsByTagName("td")[3].innerHTML;
+        document.getElementById("descri").innerHTML ="Description --> "+ description;
+
+       // let resolvedOn = list.getElementsByTagName("td")[3].innerHTML;
+        //document.getElementById("description").innerHTML ="Description --> "+ resolvedOn;
+
+
+        let status = list.getElementsByTagName("td")[4].innerHTML;
+        document.getElementById("status").innerHTML ="Status --> "+ status;
+
+        let submitedby = list.getElementsByTagName("td")[5].innerHTML;
+        document.getElementById("submitedby").innerHTML ="Submited By --> "+submitedby;
+
+        let type = list.getElementsByTagName("td")[6].innerHTML;
+        document.getElementById("reimtype").innerHTML ="Type --> "+ type;
+
+        let approve = document.getElementById("approve");
+        approve.disabled = true;
+        let denied = document.getElementById("denied");
+        denied.disabled = true;
+       if( status === "Panding"){
+
+        approve.disabled = false;
+        denied.disabled = false;
+
+        }
+        document.getElementById("approve").addEventListener("click", approveClicked);
+        document.getElementById("denied").addEventListener("click", deniedCliked);
+
+
     }
 
-
+//------------------ this will add the data in to the table ----------------------
 function fillData(data){
 let total = 0;
 for(let j = 0; j<data.length; j++){
@@ -127,16 +181,58 @@ for(let j = 0; j<data.length; j++){
 
 }
 
-
+//------------------------ All the click events ----------------------------------
 
 document.getElementById("button").addEventListener("click", refreshPage);
 
 document.getElementById("show").addEventListener("click", showForm)
 
-document.getElementById("sub").addEventListener("click",addReimb )
+//document.getElementById("sub").addEventListener("click",addReimb )
 
 document.getElementById("logout").addEventListener("click", logOut )
 
+
+
+//-------------------------------------Submit the status --------------------------
+
+
+function approveClicked(){
+    console.log("approved cliked");
+
+    let reimb_ID = document.getElementById("reimbID").innerHTML;
+    let reimbStatusID =2
+    let status={
+
+        reimb_ID,
+      reimbStatusID 
+
+    }
+
+    changeStatus(status);
+
+
+
+
+}
+function deniedCliked(){
+    console.log("denied cliked");
+    let reimb_ID = document.getElementById("reimbID").innerHTML;
+    let reimbStatusID =3
+
+    let status={
+
+        reimb_ID,
+      reimbStatusID
+
+      
+
+    }
+    changeStatus(status);
+
+
+}
+
+//-------------------------------------Show the Form to create new EMP--------------------------------
 
 function showForm(){
 
@@ -144,6 +240,7 @@ function showForm(){
 
 }
 
+//------------------------------------Function to log out-------------------------------------------
 function logOut() {
 
     window.location.href = "./login.html";
@@ -213,5 +310,37 @@ async function addReimb(e){
    refreshPage();
 }
 
- 
+async function changeStatus(status){
+
+    console.log(status)
+
+    try{
+
+        res = await fetch("http://localhost:8080/project1/status", {
+           
+           
+           method: "POST",
+
+           
+           body: JSON.stringify(status),
+          headers:{
+               "Content-Type" : "application/json"
+           }
+       })
+
+         responce = await res.json();
+         
+         //refreshPage();
+        console.log(responce);
+          
+       
+   }
+    catch(e){
+       console.log(e)
+   }
+   refreshPage();
+
+
+
+}
 

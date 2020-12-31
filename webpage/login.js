@@ -6,10 +6,10 @@ let user;
 
 
 
-function goTO(){
+async function goTO(){
 
     if(user.roleID === 1){
-    window.location.href = "./home.html";
+     window.location.href = "./home.html";
     }
     else{
         window.location.href = "./fohome.html";
@@ -58,7 +58,7 @@ async function loginSubmit(e){
           
             
         if(user !== null){ 
-        goTO()
+       await goTO()
         }
          console.log(user);
          return user.data
