@@ -11,12 +11,31 @@
     <title>Log in</title>
   </head>
   <body>
-    <p style="margin-left: 60%;">Hello you are emp</p>
     <div class="shadow p-3 mb-5 bg-white rounded" style="width: 85%; margin: auto;">
-      <p id="name" style="margin-left: 60%;">Hello you are herar</p>
+    <p style="margin-left: 60%;">Hello you are emp</p>
+    <p id="name" style="margin-left: 60%;">Hello you are herar</p>
+  </div>
+    <div class="shadow p-3 mb-5 bg-white rounded" style="width: 85%; margin: auto;">
+      
       <button id="button" type="button" class="btn btn-outline-primary">Get Data</button>
       <button id="show" type="button" class="btn btn-outline-success">show</button>
       <button id="logout" type="button" class="btn btn-outline-danger">Logout</button>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="all" value=0 checked>
+        <label class="form-check-label" for="inlineRadio1"  >All</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="pandingradio" value=1>
+        <label class="form-check-label" for="inlineRadio2">Panding</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="approvedradio" value=2 >
+        <label class="form-check-label" for="inlineRadio3">Approved</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deniedradio" value=3 >
+        <label class="form-check-label" for="inlineRadio3">Denied</label>
+      </div>
       
     </div>
     <div class="overflow-auto shadow p-3 mb-5 bg-white rounded" style="width: 85%; margin: auto;">
@@ -36,7 +55,8 @@
         </tr>
       </thead >
       <tbody id="tbody" >
-        </tbody>
+      </tbody>
+      
     </table>
     </div>
 
@@ -108,6 +128,7 @@
       <button id="approve" type="button" class="btn btn-outline-success">Approved</button>
       <button id="denied" type="button" class="btn btn-outline-danger">Denied</button>
     </div>
+    
 
   </div>
 

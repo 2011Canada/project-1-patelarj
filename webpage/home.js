@@ -1,6 +1,13 @@
 
     // get the data form the session storage 
     user = JSON.parse(sessionStorage.getItem("json"))
+
+    if(user === null){
+
+        window.location.href = "./login.html";
+     }
+     
+
      document.getElementById("name").innerHTML= user.firstName;
      
      
@@ -149,6 +156,24 @@ function refreshPage(){
     window.location.reload();
 } 
 
+let res
+document.querySelector("#customFile").addEventListener("change", function(){
+    console.log(this.files)
+    const reader = new FileReader();
+
+    reader.addEventListener("load", ()=>{
+        console.log(reader.result);
+        res = reader.result
+   })
+
+    
+
+    
+    reader.readAsDataURL(this.files[0])
+    
+    console.log(reader.result);
+
+});
 
 
 // this function taks in the input data from the form and add's the Reambursment 
@@ -167,6 +192,7 @@ async function addReimb(e){
      let reimbAuthorID = user.user_ID
      let reimbStatusID =1;
      let reimbResolverID =2;
+    let image = res
     const reimbursement = {
 
         reimbAmount,
@@ -174,8 +200,8 @@ async function addReimb(e){
         reimbDescription,
         reimbStatusID,
         reimbTypeID,
-        reimbResolverID
-    
+        reimbResolverID,
+        image
     
     }
 

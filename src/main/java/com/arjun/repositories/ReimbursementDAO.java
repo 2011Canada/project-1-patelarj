@@ -26,8 +26,8 @@ public class ReimbursementDAO {
 				
 				Boolean isAdded = false;
 				
-				String sql = "insert into ers_reimbursement( reimb_amout, reimb_description, reimb_author, reimb_resolver, reimb_status_id, reimb_type_id )"
-						+ "values(?,?,?,?,?,?) ";
+				String sql = "insert into ers_reimbursement( reimb_amout, reimb_description, reimb_author, reimb_resolver, reimb_status_id, reimb_type_id, reimb_receipt  )"
+						+ "values(?,?,?,?,?,?,?) ";
 				
 				
 				try {
@@ -38,6 +38,7 @@ public class ReimbursementDAO {
 					pst.setInt(4, reimbursement.getReimbResolverID());
 					pst.setInt(5, reimbursement.getReimbStatusID());
 					pst.setInt(6, reimbursement.getReimbTypeID());
+					pst.setString(7, reimbursement.getImage());
 					
 					
 					int res = pst.executeUpdate();
@@ -88,6 +89,7 @@ public class ReimbursementDAO {
 						reimbursement.setReimbSubmitted(res.getString(3));
 						reimbursement.setReimbResolved(res.getString(4));
 						reimbursement.setReimbDescription(res.getString(5));
+						reimbursement.setImage(res.getString(6));
 						reimbursement.setReimbAuthorID(res.getInt(7));
 						reimbursement.setReimbResolverID(res.getInt(8));
 						reimbursement.setReimbStatusID(res.getInt(9));
@@ -113,7 +115,7 @@ public class ReimbursementDAO {
 			public Boolean updateReimbursement(Reimbursements reimbursement) {
 				Boolean isDone = false;
 				
-				String sql = "update ers_reimbursement set reimb_status_id = ? where reimb_id = ?  ";
+				String sql = "update ers_reimbursement set reimb_status_id = ?, reimb_resolved = current_timestamp where reimb_id = ?  ";
 				
 				
 				try {

@@ -1,7 +1,17 @@
 
     // get the data form the session storage 
     user = JSON.parse(sessionStorage.getItem("json"))
+    let  claim = JSON.parse(sessionStorage.getItem("claims"));
+    let selected ;
+    let newdata=[];
+    if(user === null){
+
+        window.location.href = "./login.html";
+     }
+     
+
      document.getElementById("name").innerHTML= user.firstName;
+
      
      
      
@@ -28,15 +38,17 @@ let length;
         
         
          } )
-        //if you want to wait for a promise to respolve we have to make it so the function can be stopped temporarily
-        //this means the function will have to be async
 
 
         data = await response.json()
          sessionStorage.setItem("claims", JSON.stringify(data));
-         createTable(claim);
-         //length = data.length
-        // createTable(data);
+       
+
+       
+
+
+
+     
          
         console.log(data)
        return data;
@@ -47,8 +59,41 @@ let length;
 }
 getReimbursement();
 
-let  claim = JSON.parse(sessionStorage.getItem("claims"));
-//createTable(claim);
+
+
+
+
+function fileterTable(){
+    let newdata=[];
+    ele = document.getElementsByName("inlineRadioOptions")
+    let selected ;
+    
+    for(let i = 0; i< ele.length; i++){
+        if(ele[i].checked)
+        selected = ele[i].value;
+    }
+    console.log(selected)
+    for(let j = 0; j<claim.length; j++){
+        
+        
+        
+        if(claim[j].reimbStatusID == selected){
+           console.log("you are in the if ")
+           newdata.push(claim[j])
+        }
+
+
+    }
+    
+        console.log(newdata)
+    
+    createTable(newdata)   
+
+}
+
+
+
+
  
     function createTable(data){
         let total =0 ;
@@ -62,9 +107,18 @@ let  claim = JSON.parse(sessionStorage.getItem("claims"));
             let creatTh = document.createElement("th");
             creatTh.scope = "row";
             creatTh.innerHTML= data[j].reimb_ID;
-            let tBody = document.getElementById("tbody")
-            tBody.appendChild(creatTr);
-            creatTr.appendChild(creatTh);
+          
+            ele = document.getElementsByName("inlineRadioOptions")
+
+         
+          let =tBody = document.getElementById("tbody")
+                    tBody.appendChild(creatTr);
+                    creatTr.appendChild(creatTh);
+            
+
+            
+            
+            
         for(let i = 1; i<=7; i++){
             let creatTd = document.createElement("td");
              creatTd.id = total++;
@@ -79,6 +133,8 @@ let  claim = JSON.parse(sessionStorage.getItem("claims"));
 //--------------------------- Reimbursements details of individual claims--------------
 
     function showme(){
+
+        
 
         document.getElementById("details").style.display="block";
         console.log(this.className)
@@ -122,8 +178,8 @@ let  claim = JSON.parse(sessionStorage.getItem("claims"));
         document.getElementById("approve").addEventListener("click", approveClicked);
         document.getElementById("denied").addEventListener("click", deniedCliked);
 
-
-    }
+        
+}
 
 //------------------ this will add the data in to the table ----------------------
 function fillData(data){
@@ -183,7 +239,7 @@ for(let j = 0; j<data.length; j++){
 
 //------------------------ All the click events ----------------------------------
 
-document.getElementById("button").addEventListener("click", refreshPage);
+document.getElementById("button").addEventListener("click", filterTable);
 
 document.getElementById("show").addEventListener("click", showForm)
 
@@ -191,7 +247,7 @@ document.getElementById("show").addEventListener("click", showForm)
 
 document.getElementById("logout").addEventListener("click", logOut )
 
-
+//document.getElementById("filter").addEventListener("click",fileterTable)
 
 //-------------------------------------Submit the status --------------------------
 
@@ -211,9 +267,11 @@ function approveClicked(){
     changeStatus(status);
 
 
-
+refreshPage()
 
 }
+
+
 function deniedCliked(){
     console.log("denied cliked");
     let reimb_ID = document.getElementById("reimbID").innerHTML;
@@ -224,12 +282,10 @@ function deniedCliked(){
         reimb_ID,
       reimbStatusID
 
-      
-
     }
     changeStatus(status);
 
-
+    refreshPage()
 }
 
 //-------------------------------------Show the Form to create new EMP--------------------------------
@@ -247,10 +303,55 @@ function logOut() {
 
 }
 
-function refreshPage(){
-    window.location.reload();
-} 
 
+
+async function filterTable(){
+    
+    
+
+    let rmovebody = document.getElementById("tbody")
+    while(rmovebody.firstChild){
+        rmovebody.removeChild(rmovebody.firstChild)
+    }
+
+    let newdata=[];
+    ele = document.getElementsByName("inlineRadioOptions")
+    let selected ;
+    
+    for(let i = 0; i< ele.length; i++){
+        if(ele[i].checked)
+        selected = ele[i].value;
+    }
+    console.log(selected)
+    for(let j = 0; j<data.length; j++){
+        
+        
+        
+        if(data[j].reimbStatusID == selected){
+           console.log("you are in the if ")
+           newdata.push(data[j])
+        }
+        else if( selected == 0 ){
+
+            newdata.push(data[j])
+        }
+
+
+    }
+    
+        console.log(newdata)
+    
+    createTable(newdata)   
+
+
+
+
+
+
+    //createTable(data);
+     //window.location.reload();
+     
+}
 
 
 // this function taks in the input data from the form and add's the Reambursment 
@@ -312,6 +413,7 @@ async function addReimb(e){
 
 async function changeStatus(status){
 
+    
     console.log(status)
 
     try{
@@ -338,9 +440,14 @@ async function changeStatus(status){
     catch(e){
        console.log(e)
    }
+  
    refreshPage();
+   
 
 
+}
 
+function refreshPage(){
+    location.reload();
 }
 

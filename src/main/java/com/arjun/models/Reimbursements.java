@@ -15,8 +15,19 @@ public class Reimbursements {
 	private int reimbResolverID;
 	private int reimbStatusID;
 	private int reimbTypeID;
+	private String image;
 	
 	
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
 	public Reimbursements() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -24,7 +35,7 @@ public class Reimbursements {
 
 
 	public Reimbursements(int reimb_ID, double reimbAmount, String reimbSubmitted, String reimbResolved,
-			String reimbDescription, int reimbAuthorID, int reimbResolverID, int reimbStatusID, int reimbTypeID) {
+			String reimbDescription, int reimbAuthorID, int reimbResolverID, int reimbStatusID, int reimbTypeID, String image) {
 		super();
 		this.reimb_ID = reimb_ID;
 		this.reimbAmount = reimbAmount;
@@ -35,6 +46,7 @@ public class Reimbursements {
 		this.reimbResolverID = reimbResolverID;
 		this.reimbStatusID = reimbStatusID;
 		this.reimbTypeID = reimbTypeID;
+		this.image = image;
 	}
 
 
