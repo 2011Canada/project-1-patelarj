@@ -12,6 +12,9 @@ public class FinanceOfficerServices {
  
  private UserDAO userDAO = new UserDAO();
 	
+ 
+ 
+ // this will update the status of the reimbursements by calling DAO methods returs true if success else false 
 	public boolean updateReimbursement(Reimbursements reimbursements) {
 		
 		Boolean isUpdated = false; 
@@ -23,6 +26,7 @@ public class FinanceOfficerServices {
 		
 	}
 	
+// checks if user is unique 	
 	
 	private boolean isUserIsUnique(Users user) {
 		boolean isUnique = false;
@@ -33,9 +37,12 @@ public class FinanceOfficerServices {
 			}
 		}
 		
+		System.out.println("is user unique" + isUnique );
 		return isUnique;
 		
 	}
+	
+// add new user if true success else false 
 	
 	public boolean addUserSuccess(Users user) {
 		boolean success = false;
@@ -47,6 +54,7 @@ public class FinanceOfficerServices {
 			
 		}
 		
+		System.out.println("add user" + success);
 		return success;
 		
 	}

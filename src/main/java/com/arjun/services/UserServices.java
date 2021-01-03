@@ -32,6 +32,9 @@ public class UserServices {
 		return user;
 	}
 	
+	
+// this will take reimbursement as the argumet is reimbursements is success returns true else false 	
+	
 	public Boolean isClaimReimbursment(Reimbursements reimbursement) {
 		Boolean isClaimed = false;
 		
@@ -43,6 +46,9 @@ public class UserServices {
 		
 		return isClaimed;
 	}
+	
+	
+// takes in userid and return list of reimbursement for the perticuler user 
 	
 	public List<Reimbursements> getAllReimb(int userid){
 		

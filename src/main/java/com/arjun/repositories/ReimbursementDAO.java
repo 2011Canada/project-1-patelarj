@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.arjun.models.Reimbursements;
-import com.arjun.models.ReimbursementsTest;
+
 import com.arjun.util.MyConnectionFactory;
 
 public class ReimbursementDAO {
@@ -21,7 +21,10 @@ public class ReimbursementDAO {
 	private MyConnectionFactory mcf = MyConnectionFactory.getConnectionFactory();
 			Connection conn = mcf.getConnection();
 			
+		
 			
+			
+	// add Reimbursements to data base if success return true else false takes in reimbursement object 		
 			public Boolean addReimbursement(Reimbursements reimbursement)  {
 				
 				Boolean isAdded = false;
@@ -57,7 +60,10 @@ public class ReimbursementDAO {
 				
 			}
 			
-			public List<Reimbursements> getMyReimbursement(int userid) {
+			
+		// get all the user Reimbursement take is user id and return list of reimbursement 
+			
+		public List<Reimbursements> getMyReimbursement(int userid) {
 				
 				
 				List<Reimbursements> reimbList = new ArrayList<Reimbursements>();
@@ -110,9 +116,10 @@ public class ReimbursementDAO {
 			}
 			
 			
+		
+	// this will update the reimbursements status if update successs the returns true else false  takes in reimbursement object 	
 			
-			
-			public Boolean updateReimbursement(Reimbursements reimbursement) {
+		public Boolean updateReimbursement(Reimbursements reimbursement) {
 				Boolean isDone = false;
 				
 				String sql = "update ers_reimbursement set reimb_status_id = ?, reimb_resolved = current_timestamp where reimb_id = ?  ";
@@ -141,50 +148,5 @@ public class ReimbursementDAO {
 				
 			}
 			
-			/*
-
-			public List<ReimbursementsTest> getMyReimbursementTest(int userid){
 			
-			
-				ReimbursementsTest reimbursement = new ReimbursementsTest();
-				List<ReimbursementsTest> reimbList = new ArrayList<ReimbursementsTest>();
-			
-			String sql = "select reimb_id, reimb_amout, reimb_submitted, reimb_resolved, reimb_description, ert.reimb_type ,ers.reimb_status, eu.user_first_name" + 
-						 "from ers_reimbursement er inner join ers_users eu on er.reimb_author = eu.ers_users_id" + 
-						 "inner join ers_reimbursement_status ers on er.reimb_status_id = ers.reimb_status_id"+ 
-						 "inner join ers_reimbursement_type ert on er.reimb_type_id = ert.reimb_type_id "+
-						 "where er.reimb_author = ?";
-			
-			
-			try {
-				pst = conn.prepareStatement(sql);
-				
-				pst.setInt(1, userid);
-				
-				ResultSet res = pst.executeQuery();
-				
-				while(res.next()) {
-					reimbursement.setReimb_ID(res.getInt(1));
-					reimbursement.setReimbAmount(res.getDouble(2));
-					reimbursement.setReimbSubmitted(res.getDate(3));
-					reimbursement.setReimbResolved(res.getDate(4));
-					reimbursement.setReimbDescription(res.getString(5));
-					reimbursement.setReimbType(res.getString(6));
-					reimbursement.setReimbStatus(res.getString(7));					
-					reimbursement.setReimbAuthor(res.getString(8));
-					reimbList.add(reimbursement);
-					
-				}
-				
-				
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			return  reimbList;
-			
-			}
-			*/
 }

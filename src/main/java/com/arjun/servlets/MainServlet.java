@@ -36,12 +36,10 @@ public class MainServlet extends HttpServlet {
 			{
 				switch (request.getMethod()) {
 					case "GET":{
-						//reimbController.getAllReimbursement(request, response);
+						
 						response.setStatus(400);
 						response.getWriter().write("Method Not Supported");
-						//		reimbController.getAllReimbursement(request, response);
-						//System.out.println("reached to get");
-						//reimbController.getAllReimbursement(request, response);
+						
 						break;
 					}
 					case "POST":{
@@ -49,7 +47,7 @@ public class MainServlet extends HttpServlet {
 						System.out.println("reached to post");
 						try {
 							authController.userLogin(request, response);
-							//reimbController.addReimbursement(request, response);
+							
 							
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
@@ -61,18 +59,10 @@ public class MainServlet extends HttpServlet {
 						break;
 					}
 					case "PUT":{
-						//response.setStatus(400);
-						//response.getWriter().write("Method Not Supported");
-						System.out.println("put ");
-						try {
-							reimbController.addReimbursement(request, response);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (SQLException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+					
+						response.setStatus(400);
+						response.getWriter().write("Method Not Supported");
+						
 						break;
 					}
 					case "DELETE":{
@@ -96,17 +86,17 @@ public class MainServlet extends HttpServlet {
 		{
 			switch (request.getMethod()) {
 				case "GET":{
-					//response.setStatus(400);
-					//response.getWriter().write("Method Not Supported");
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
 					
-					//reimbController.getAllReimbursement(request, response);
+					
 					break;
 				}
 				case "POST":{
 					try {
-						//authController.userLogin(request, response);
-						//reimbController.addReimbursement(request, response);
-						System.out.println("reached to the post");
+						
+						
+						System.out.println("reached to the home post");
 						reimbController.getAllReimbursement(request, response);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -115,17 +105,9 @@ public class MainServlet extends HttpServlet {
 					break;
 				}
 				case "PUT":{
-					//response.setStatus(400);
-					//response.getWriter().write("Method Not Supported");
-					try {
-						reimbController.addReimbursement(request, response);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					
 					break;
 				}
 				case "DELETE":{
@@ -149,16 +131,15 @@ public class MainServlet extends HttpServlet {
 		{
 			switch (request.getMethod()) {
 				case "GET":{
-					//response.setStatus(400);
-					//response.getWriter().write("Method Not Supported");
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
 					
-					//reimbController.getAllReimbursement(request, response);
+					
 					break;
 				}
 				case "POST":{
 					try {
-						//authController.userLogin(request, response);
-						//reimbController.addReimbursement(request, response);
+						
 						System.out.println("reached to the post");
 						
 						try {
@@ -200,16 +181,16 @@ public class MainServlet extends HttpServlet {
 		{
 			switch (request.getMethod()) {
 				case "GET":{
-					//response.setStatus(400);
-					//response.getWriter().write("Method Not Supported");
 					
-					//reimbController.getAllReimbursement(request, response);
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					
+					
 					break;
 				}
 				case "POST":{
 					try {
-						//authController.userLogin(request, response);
-						//reimbController.addReimbursement(request, response);
+						
 						System.out.println("reached to the post");
 						
 						reimbController.updateReimb(request, response);
@@ -218,6 +199,47 @@ public class MainServlet extends HttpServlet {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					break;
+				}
+				case "PUT":{
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					break;
+				}
+				case "DELETE":{
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					break;
+				}
+				default:{
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					break;
+				}
+			
+		}
+
+			
+			
+		
+		}
+		
+		
+		else if(URI.equals("/adduser") ) 
+		{
+			switch (request.getMethod()) {
+				case "GET":{
+					response.setStatus(400);
+					response.getWriter().write("Method Not Supported");
+					
+					
+					break;
+				}
+				case "POST":{
+					
+					System.out.println("reached to the add user post");
+					
+					authController.addUser(request, response);
 					break;
 				}
 				case "PUT":{

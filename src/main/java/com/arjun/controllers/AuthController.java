@@ -61,13 +61,19 @@ public class AuthController {
 			try {
 				user = obj.readValue(request.getInputStream(), Users.class);
 				
+				System.out.println(user.getFirstName());
+				
 				if(financeOfficerServices.addUserSuccess(user)) {
 					
-					responce.getWriter().write("User added");
+					String conf = "User added";
+					responce.getWriter().write(obj.writeValueAsString(conf));
+					System.out.println("user added");
 				}
 				else {
 					
-					responce.getWriter().write("User Can not added Please enter valid input");
+					String conf = "User Can not added Please enter valid inpu";
+					responce.getWriter().write(obj.writeValueAsString(conf));
+					System.out.println("not add");
 				}
 				
 				

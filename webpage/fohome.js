@@ -105,6 +105,9 @@ function fileterTable(){
             creatTr.setAttribute("data-toggle", "modal")
             creatTr.setAttribute("data-target", "#staticBackdrop")
             creatTr.addEventListener("click" , showme )
+
+
+
             let creatTh = document.createElement("th");
             creatTh.scope = "row";
             creatTh.innerHTML= data[j].reimb_ID;
@@ -252,7 +255,7 @@ document.getElementById("button").addEventListener("click", filterTable);
 
 document.getElementById("show").addEventListener("click", showForm)
 
-//document.getElementById("sub").addEventListener("click",addReimb )
+document.getElementById("sub").addEventListener("click",addUsers )
 
 document.getElementById("logout").addEventListener("click", logOut )
 
@@ -365,59 +368,65 @@ async function filterTable(){
 
 // this function taks in the input data from the form and add's the Reambursment 
 
-async function addReimb(e){
+async function addUsers(e){
     e.preventDefault();
-     let reimbAmount = document.getElementById("amount").value
-     let reimbDescription = document.getElementById("description").value
-     let reimbTypeID
-     let  ele = document.getElementsByName('gridRadios')
-     for(let i = 0; i< ele.length; i++){
-            if(ele[i].checked)
-            reimbTypeID = ele[i].value;
-     }   
+     let firstName = document.getElementById("firstname").value
+     let lastName = document.getElementById("lastname").value
+     let email = document.getElementById("email").value
+     let userName = document.getElementById("username").value
+     let userPassword = document.getElementById("password").value
+     
+     
+    const users = {
 
-     let reimbAuthorID = user.user_ID
-     let reimbStatusID =1;
-     let reimbResolverID =2;
-    const reimbursement = {
-
-        reimbAmount,
-        reimbAuthorID,
-        reimbDescription,
-        reimbStatusID,
-        reimbTypeID,
-        reimbResolverID
+        firstName,
+        lastName,
+        email,
+        userName,
+        userPassword,
     
     
     }
 
-    console.log(reimbursement)
+
+
+    console.log(users)
+    if(firstName !== '' && lastName !== '' && email !=='' && userName !== '' && userPassword !== ''){
 
     try{
 
-        res = await fetch("http://localhost:8080/project1/add", {
+        res = await fetch("http://localhost:8080/project1/adduser", {
            
            
            method: "POST",
 
            
-           body: JSON.stringify(reimbursement),
+           body: JSON.stringify(users),
           headers:{
                "Content-Type" : "application/json"
            }
        })
 
-         responce = await res.json();
+        let responce = await res.json()
          
-         //refreshPage();
-        console.log(responce);
+        alert(responce)
+         console.log(responce)
           
-       
+         refreshPage();
    }
     catch(e){
        console.log(e)
    }
-   refreshPage();
+
+    }
+
+    else{
+   
+        alert("Please enter valid input")
+        refreshPage();
+    }
+
+   
 }
 
 async function changeStatus(status){

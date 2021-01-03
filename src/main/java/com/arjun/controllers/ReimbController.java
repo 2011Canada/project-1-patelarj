@@ -44,16 +44,16 @@ public class ReimbController {
 		
 	}
 	
+	
+	
 	public void getAllReimbursement(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		//HttpSession sess = request.getSession();
+		
 		Users user = obj.readValue(request.getInputStream(), Users.class);
-		//int userid = (int) sess.getAttribute("userID");
-		//int userroal = (int) sess.getAttribute("roalID");
-		//System.out.println(one);
 		
 		
-		//if(userroal==1) {
+		
+		
 		if(user.getRoleID()== 1) {
 		
 		List<Reimbursements> reimbList = userService.getAllReimb(user.getUser_ID());
