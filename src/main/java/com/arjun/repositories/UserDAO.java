@@ -78,6 +78,63 @@ public class UserDAO {
 				
 				
 			}
+			
+			public Boolean isUserUnique(Users user) {
+				
+				boolean userIsUnique = false;
+						
+						String sql = "select * from ers_users where ers_username = ? or user_email = ? ";
+				try {
+					pst = conn.prepareStatement(sql);
+					pst.setString(1, user.getUserName());
+					pst.setString(2, user.getEmail());
+					
+					ResultSet res = pst.executeQuery();
+					if(res.next()) {
+						userIsUnique = true;
+					}
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return userIsUnique;
+				
+				
+				
+			}
+			
+			public Boolean addUser(Users user) {
+				boolean userAdded = false;
+				
+				String sql = "insert into ers_users (user_first_name, user_last_name, user_email, ers_username, ers_password, user_role_id )"
+						+ "values(?, ?, ?, ?, ?, 1)," ;
+				
+				try {
+					pst = conn.prepareStatement(sql);
+					pst.setString(1, user.getFirstName());
+					pst.setString(2, user.getLastName());
+					pst.setString(3, user.getEmail());
+					pst.setString(4, user.getUserName());
+					pst.setString(5, user.getUserPassword());
+					
+					int res = pst.executeUpdate();
+					if(res != 0) {
+						userAdded = false;
+					}
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					userAdded = false;
+				}
+				
+				
+				
+				
+				return userAdded;
+			}
 	
 	
 

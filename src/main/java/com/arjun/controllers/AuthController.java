@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.arjun.models.Users;
+import com.arjun.services.FinanceOfficerServices;
 import com.arjun.services.UserServices;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,32 +31,58 @@ public class AuthController {
 		Users user = obj.readValue(request.getInputStream(), Users.class);
 		
 		
-		//System.out.println(user.getUserName());
+		
 		
 		Users newUser = userServices.userLogin(user.getUserName(), user.getUserPassword());
-		//Users newUser = userServices.userLogin(username, password);
 		
-		//HttpSession sess = request.getSession();
-		
-		//sess.setAttribute("userID", newUser.getUser_ID());
-		//sess.setAttribute("roalID", newUser.getRoleID());
 		System.out.println(newUser.getUser_ID());
 		
 		if(newUser.getUser_ID() == 0) {
 			responce.getWriter().write("User Can not found");
 			
-			//responce.sendRedirect("/home.html");
+			
 		}
 		else {
 			
-			//String userid = String.valueOf(newUser.getUser_ID());
-			//Cookie one = new Cookie("userID", userid );
+			
 			responce.getWriter().write(obj.writeValueAsString(newUser));
-			//responce.addCookie(one);
-			//responce.sendRedirect("./home.html");
+			
 		}
 		
 		
 	}
+	
+	public void addUser(HttpServletRequest request, HttpServletResponse responce) {
+		ObjectMapper obj = new ObjectMapper();
+		FinanceOfficerServices financeOfficerServices = new FinanceOfficerServices();
+		
+		
+			Users user;
+			try {
+				user = obj.readValue(request.getInputStream(), Users.class);
+				
+				if(financeOfficerServices.addUserSuccess(user)) {
+					
+					responce.getWriter().write("User added");
+				}
+				else {
+					
+					responce.getWriter().write("User Can not added Please enter valid input");
+				}
+				
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+		
+		
+		
+		
+	}
+	
+	
 
 }

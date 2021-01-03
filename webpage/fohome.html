@@ -11,12 +11,15 @@
     <title>Log in</title>
   </head>
   <body>
+   
+    <div class="shadow p-3 mb-5 bg-white rounded" style="width: 85%; margin: auto; ">
+      <h1 style="text-align: center;">
+         Employee Expense Reimbursement System
+      </h1>
+   </div>
     <div class="shadow p-3 mb-5 bg-white rounded" style="width: 85%; margin: auto;">
-    <p style="margin-left: 60%;">Hello you are emp</p>
-    <p id="name" style="margin-left: 60%;">Hello you are herar</p>
-  </div>
-    <div class="shadow p-3 mb-5 bg-white rounded" style="width: 85%; margin: auto;">
-      
+      <p id="name" style="margin-left: 80%;"></p>
+      <p style="margin-left: 80%;">Role:- Finance Manager</p>
       <button id="button" type="button" class="btn btn-outline-primary">Get Data</button>
       <button id="show" type="button" class="btn btn-outline-success">show</button>
       <button id="logout" type="button" class="btn btn-outline-danger">Logout</button>
@@ -48,9 +51,9 @@
           <th scope="col">Submited</th>
           <th scope="col">Resolved</th>
           <th scope="col">Description</th>
-          <th scope="col">StatusID</th>
+          <th scope="col">Status</th>
           <th scope="col">Submitted by</th>
-          <th scope="col">reimbTypeID</th>
+          <th scope="col">Reimbrsement Type</th>
           
         </tr>
       </thead >
@@ -112,9 +115,10 @@
       </div>
     </form>
   </div>
-  <div id="details" class="card shadow p-3 mb-5 bg-white rounded " style="width: 85%; margin: auto;">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
+  <div id="details" class="card shadow p-3 mb-5 bg-white rounded container " style="width: 85%; margin: auto;">
+    <div class="card-body row">
+      <div class="col-sm shadow rounded">
+      <h5 class="card-title">Reimbursement Details</h5>
       <ul class="list-group list-group-flush">
         <li class="list-group-item" id="reimbID"></li>
         <li class="list-group-item" id="amo"></li>
@@ -128,8 +132,11 @@
       <button id="approve" type="button" class="btn btn-outline-success">Approved</button>
       <button id="denied" type="button" class="btn btn-outline-danger">Denied</button>
     </div>
-    
-
+    <div class="col-sm shadow rounded">
+      <img id="img" src="" height="200" alt="Image preview...">
+    </div>
+  </div>
+   
   </div>
 
 

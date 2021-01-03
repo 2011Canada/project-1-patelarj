@@ -8,7 +8,7 @@
      }
      
 
-     document.getElementById("name").innerHTML= user.firstName;
+     document.getElementById("name").innerHTML= "Name :- " + user.firstName +" "+ user.lastName;
      
      
      // hide the form form the user at first 
@@ -18,7 +18,7 @@ let data
 let length;
  async function getReimbursement() {
     try {
-        //just wait for the priomise to resolve
+       
         let response = await fetch("http://localhost:8080/project1/home" ,
 
         {
@@ -31,15 +31,13 @@ let length;
         
         
          } )
-        //if you want to wait for a promise to respolve we have to make it so the function can be stopped temporarily
-        //this means the function will have to be async
+        
 
 
         data = await response.json()
-        await sessionStorage.setItem("claims", JSON.stringify(data));
-        await createTable(claim);
-         //length = data.length
-        // createTable(data);
+        sessionStorage.setItem("claims", JSON.stringify(data));
+         createTable(data);
+         
          
         console.log(data)
        return data;
@@ -51,13 +49,17 @@ let length;
 getReimbursement();
 
 let  claim = JSON.parse(sessionStorage.getItem("claims"));
-//createTable(claim);
+
  
     function createTable(data){
         let total =0 ;
         for(let j = 0; j<data.length; j++){
             let creatTr = document.createElement("tr");
+
+
+            
             let creatTh = document.createElement("th");
+
             creatTh.scope = "row";
             creatTh.innerHTML= data[j].reimb_ID;
             let tBody = document.getElementById("tbody")
@@ -157,6 +159,9 @@ function refreshPage(){
 } 
 
 let res
+
+// this function take the image provided and chage it to the dataurl/ Base64
+
 document.querySelector("#customFile").addEventListener("change", function(){
     console.log(this.files)
     const reader = new FileReader();
@@ -176,7 +181,7 @@ document.querySelector("#customFile").addEventListener("change", function(){
 });
 
 
-// this function taks in the input data from the form and add's the Reambursment 
+// this function taks in the input data from the form and add's the Reambursment to the data base 
 
 async function addReimb(e){
     e.preventDefault();
@@ -221,9 +226,7 @@ async function addReimb(e){
            }
        })
 
-        // responce = await res.json();
-         
-         //refreshPage();
+        
         console.log(responce);
           
        
@@ -234,5 +237,16 @@ async function addReimb(e){
    refreshPage();
 }
 
+// disabled the submit button if no amout provided 
+
+let manage =(txt) => {
+    let bt = document.getElementById("sub");
+    if(txt.value !='' ){
+        bt.disabled = false;
+    }
+    else{
+        bt.disabled = true;
+    }
+}
  
 

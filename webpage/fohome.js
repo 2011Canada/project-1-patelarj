@@ -10,12 +10,13 @@
      }
      
 
-     document.getElementById("name").innerHTML= user.firstName;
+     document.getElementById("name").innerHTML="Name :- "+ user.firstName+" "+user.lastName;
 
      
      
      
      // hide the form form the user at first 
+     // hider riemb details at first form the user 
      document.getElementById("form").style.display = "none";
      document.getElementById("details").style.display="none";
 
@@ -111,7 +112,7 @@ function fileterTable(){
             ele = document.getElementsByName("inlineRadioOptions")
 
          
-          let =tBody = document.getElementById("tbody")
+          let tBody = document.getElementById("tbody")
                     tBody.appendChild(creatTr);
                     creatTr.appendChild(creatTh);
             
@@ -178,6 +179,14 @@ function fileterTable(){
         document.getElementById("approve").addEventListener("click", approveClicked);
         document.getElementById("denied").addEventListener("click", deniedCliked);
 
+        for (let j =0; j<= data.length; j++){
+
+            if(data[j].reimb_ID == this.className){
+                let img = document.getElementById("img");
+                img.src = data[j].image;
+            }
+
+        }
         
 }
 
