@@ -1,2 +1,15 @@
 # ERS-Base
-- Read requirements and complete by the due date
+PROJECT NAME
+Project Description
+Here goes your awesome project description!
+
+Technologies Used
+Tech 1 - version 1.0
+Tech 2 - version 2.0
+Tech 3 - version 3.0
+Features
+List of features ready and TODOs for future development
+
+Awesome feature 1
+Awesome feature 2
+Awesome feature 3
