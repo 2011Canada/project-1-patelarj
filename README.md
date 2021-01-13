@@ -47,7 +47,7 @@ Finance managers are authorized to approve and deny requests for expense reimbur
 <h2>Getting Started</h2>
 
 <ul>
-<li>User can login</li>
+<li>Using git bash download the code form git hub using git clone</li>
 <li>User can reimbursement request</li>
 <li>User can Upload proof of purchase</li>
 <li>User can see past reimbursement request</li>
@@ -55,6 +55,7 @@ Finance managers are authorized to approve and deny requests for expense reimbur
 <li>Approver can login </li>
 <li>Approver can see and approve or reject the application </li>
 </ul>
+
 
 Download the code from git hub git clone 
 Setup a postgreSQL database using the ERSDataBaseDefaultsColin.sql script
