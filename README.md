@@ -47,20 +47,19 @@ Finance managers are authorized to approve and deny requests for expense reimbur
 <h2>Getting Started</h2>
 
 <ul>
-<li>Using git bash download the code form git hub using git clone</li>
-<li>User can reimbursement request</li>
-<li>User can Upload proof of purchase</li>
-<li>User can see past reimbursement request</li>
-<li>User can view  statues of application and details</li>
-<li>Approver can login </li>
-<li>Approver can see and approve or reject the application </li>
+<li>Using git bash download the code form git hub using git clone https://github.com/2011Canada/project-1-patelarj.git</li>
+<liSetup a postgreSQL database using the Script-4.sql script</li>
+<li>Set Env vars DB_PASSWORD, DB_USER, DB_URL</li>
+<li>Run the server</li>
+<li>To run Html file go to webpage folder and open Login.html </li>
 </ul>
 
+<h2>Usage</h2>
 
-Download the code from git hub git clone 
-Setup a postgreSQL database using the ERSDataBaseDefaultsColin.sql script
-Set Env vars DB_PASSWORD, DB_USER, DB_URL
-Run the server
-Go to  in a webbrowser to access the application
-You should get a login screen that looks like this
+
+
+
+
+
+
 
