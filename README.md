@@ -10,16 +10,16 @@ Finance managers are authorized to approve and deny requests for expense reimbur
 
 
 <h2>Technologies Used</h2>
-Servlets
-Java,
-JavaScript
-HTML
-CSS
-JDBC
-SQL
-AJAX
-Bootstrap
-RDS
+-Servlets
+-Java,
+-JavaScript
+-HTML
+-CSS
+-JDBC
+-SQL
+-AJAX
+-Bootstrap
+-RDS
 
 <h2>Features</h2>
 
