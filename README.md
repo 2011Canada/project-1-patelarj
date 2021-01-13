@@ -54,7 +54,7 @@ Finance managers are authorized to approve and deny requests for expense reimbur
 <li>To run Html file go to webpage folder and open Login.html </li>
 </ul>
 
-<h2>Usage</h2>
+
 
 
 
